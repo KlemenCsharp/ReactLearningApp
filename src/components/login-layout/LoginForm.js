@@ -2,28 +2,30 @@ import { Button, Form } from "react-bootstrap";
 import React, { useState } from "react";
 
 function LoginForm() {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
 
     const usernameChangeHandler = (event) => {
-        setUserInput({
-                ...userInput,  // Takes current state that we can write over, so password is not lost
-                username: event.target.value
-            });
+        setUsername(event.target.value);
     };
     
     const passwordChangeHandler = (event) => {
-        setUserInput({
-            ...userInput, 
-            password: event.target.value
-        });
+        setPassword(event.target.value);    
+    } 
+
+    const submitHandler = (event) => {
+        event.preventDefault(); // Without this page would by default reload - default javascript behaviour
+        
+        const loginData = {
+            username: username,
+            password: password
+        }
+        
+        console.log(loginData);
     }
 
-    const [userInput, setUserInput] = useState({
-        username: '',
-        password: ''
-    })
-
     return (
-        <Form>
+        <Form onSubmit={submitHandler}>
             <Form.Group className="mb-3" controlId="formUsername">
                 <Form.Label>Username</Form.Label>
                 <Form.Control type="text" onChange={usernameChangeHandler} ></Form.Control>
