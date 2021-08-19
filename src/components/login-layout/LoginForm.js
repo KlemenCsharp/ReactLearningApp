@@ -22,6 +22,13 @@ function LoginForm() {
         }
         
         console.log(loginData);
+
+        if ( loginData.username === 'Klemen' && loginData.password === 'Test') {
+            window.alert('Login was succesful!');
+        } else {
+            window.alert('Login was unsuccesfull!');
+        }
+        
     }
 
     return (
