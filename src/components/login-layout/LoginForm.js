@@ -1,45 +1,29 @@
-import { Button, Form } from "react-bootstrap";
 import React, { useState } from "react";
+import { Button, Form } from "react-bootstrap";
 
 function LoginForm() {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-
-    const usernameChangeHandler = (event) => {
-        setUsername(event.target.value);
-    };
-    
-    const passwordChangeHandler = (event) => {
-        setPassword(event.target.value);    
-    } 
-
-    const submitHandler = (event) => {
-        event.preventDefault(); // Without this page would by default reload - default javascript behaviour
-        
-        const loginData = {
-            username: username,
-            password: password
+    const [validated, setValidated] = useState(false);
+    const handleSubmit = (event) => {
+        const form = event.currentTarget;
+        if (form.checkValidity() === false) {
+            event.preventDefualt();
+            event.stopPropagation();
         }
-        
-        console.log(loginData);
-
-        if ( loginData.username === 'Klemen' && loginData.password === 'Test') {
-            window.alert('Login was succesful!');
-        } else {
-            window.alert('Login was unsuccesfull!');
-        }
-        
+        setValidated(true);
     }
+  
 
     return (
-        <Form onSubmit={submitHandler}>
+        <Form validated={validated} onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formUsername">
                 <Form.Label>Username</Form.Label>
-                <Form.Control type="text" onChange={usernameChangeHandler} ></Form.Control>
+                <Form.Control type="text" required></Form.Control>
+                <Form.Control.Feedback type="invalid">Username is required!</Form.Control.Feedback>
             </Form.Group>
             <Form.Group className="mb-3" controlId="formPassword">
                 <Form.Label>Password</Form.Label>
-                <Form.Control type="password" onChange={passwordChangeHandler}></Form.Control>
+                <Form.Control type="password" required minLength="8"></Form.Control>
+                <Form.Control.Feedback type="invalid">Password is required!</Form.Control.Feedback>
             </Form.Group>
             <Button variant="primary" type="submit">Login</Button>
         </Form>
