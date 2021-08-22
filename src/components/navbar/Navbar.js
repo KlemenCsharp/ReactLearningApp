@@ -1,7 +1,12 @@
-import './Navbar.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "./Navbar.css";
 
 function Navbar() {
-    return <p className="test-class" >Here is navbar!</p>
+  return (
+    <div>
+      <p className="test-class">Here is navbar!</p>
+    </div>
+  );
 }
 
 export default Navbar;
