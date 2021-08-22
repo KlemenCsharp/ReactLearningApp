@@ -2,10 +2,13 @@ import { useFormik } from "formik";
 import React from "react";
 import { Button, Form } from "react-bootstrap";
 import { loginSchema } from "../validations/LoginValidations";
+import { useHistory } from "react-router-dom";
 
 function LoginForm() {
   const fakeUsername = "Klemen";
   const fakePassword = "55b789989F";
+
+  let history = useHistory();
 
   const formik = useFormik({
     validationSchema: loginSchema,
@@ -16,7 +19,7 @@ function LoginForm() {
     onSubmit: (values) => {
       if (values.username === fakeUsername) {
         if (values.password === fakePassword) {
-          window.location.href = "http://www.w3schools.com";
+          history.push("/welcome");
         } else {
           alert("Password is invalid!");
         }
