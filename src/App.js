@@ -1,8 +1,10 @@
+import { Redirect, Route, Switch } from "react-router-dom";
 import "./App.css";
-import { Route, Redirect, Switch } from "react-router-dom";
 import LoginView from "./components/login-layout/LoginView";
-import Navbar from "./components/navbar/Navbar";
+import Topbar from "./components/navbar/Topbar";
+import UsersPage from "./pages/users/UsersPage";
 import NotFound from "./pages/not-found/NotFound";
+import HomePage from "./pages/home/HomePage";
 
 function App() {
   return (
@@ -15,7 +17,12 @@ function App() {
           <LoginView />
         </Route>
         <Route path="/welcome">
-          <Navbar />
+          <Topbar />
+          <HomePage />
+        </Route>
+        <Route path="/users">
+          <Topbar />
+          <UsersPage />
         </Route>
         <Route path="*">
           <NotFound />
