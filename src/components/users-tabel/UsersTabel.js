@@ -1,60 +1,51 @@
 import Table from "react-bootstrap/Table";
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 
-function UsersTabel() {
-  // eslint-disable-next-line no-unused-vars
-  const [data, setData] = useState([]);
+const UsersTabel = () => {
+  const [users, setUsers] = useState({ usersData: [] });
 
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/users")
-      .then((res) => {
-        return res.json();
-      })
-      .then((resJson) => {
-        console.log(resJson);
-        setData(resJson);
-      });
-  }, []);
+    const fetchUsers = async () => {
+      const { data } = await axios(
+        "https://jsonplaceholder.typicode.com/users"
+      );
 
-  function getUsers() {
-    console.log(data);
-  }
+      setUsers({ usersData: data });
+      console.log(data);
+    };
+    fetchUsers();
+  }, [setUsers]);
 
   return (
     <div>
-      <h1>Users tabel</h1>
-      <button onClick={getUsers}>Get Users</button>
-      <Table striped bordered hover>
+      <Table size="sm" striped bordered hover responsive>
         <thead>
           <tr>
-            <th>#</th>
-            <th>First Name</th>
-            <th>Last Name</th>
+            <th>id</th>
+            <th>Name</th>
             <th>Username</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Website</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td colSpan="2">Larry the Bird</td>
-            <td>@twitter</td>
-          </tr>
+          {users.usersData &&
+            users.usersData.map((item) => (
+              <tr key={item.id}>
+                <td>{item.id}</td>
+                <td>{item.name}</td>
+                <td>{item.username}</td>
+                <td>{item.email}</td>
+                <td>{item.phone}</td>
+                <td>{item.website}</td>
+              </tr>
+            ))}
         </tbody>
       </Table>
     </div>
   );
-}
+};
 
 export default UsersTabel;
