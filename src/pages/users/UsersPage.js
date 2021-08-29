@@ -1,9 +1,12 @@
+import React from "react";
+import UsersTabel from "../../components/users-tabel/UsersTabel";
+
 function UsersPage() {
-    return (
-        <div>
-            Users page works!
-        </div>
-    )
+  return (
+    <div>
+      <UsersTabel />
+    </div>
+  );
 }
 
 export default UsersPage;
