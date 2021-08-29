@@ -1,16 +1,23 @@
 import Table from "react-bootstrap/Table";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 function UsersTabel() {
-  function getUsers() {
+  // eslint-disable-next-line no-unused-vars
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/users")
       .then((res) => {
-        console.log(res);
         return res.json();
       })
-      .then((data) => {
-        console.log(data);
+      .then((resJson) => {
+        console.log(resJson);
+        setData(resJson);
       });
+  }, []);
+
+  function getUsers() {
+    console.log(data);
   }
 
   return (
