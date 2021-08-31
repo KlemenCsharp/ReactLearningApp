@@ -1,6 +1,10 @@
 import Table from "react-bootstrap/Table";
+import { Button } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import "./UsersTabel.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
 
 const UsersTabel = () => {
   const [users, setUsers] = useState({ usersData: [] });
@@ -28,6 +32,7 @@ const UsersTabel = () => {
             <th>Email</th>
             <th>Phone</th>
             <th>Website</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -40,6 +45,11 @@ const UsersTabel = () => {
                 <td>{item.email}</td>
                 <td>{item.phone}</td>
                 <td>{item.website}</td>
+                <td className="centered-button">
+                  <Button size="sm" variant="light">
+                    <FontAwesomeIcon icon={faEye} />
+                  </Button>
+                </td>
               </tr>
             ))}
         </tbody>
