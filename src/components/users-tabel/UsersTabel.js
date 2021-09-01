@@ -5,9 +5,11 @@ import axios from "axios";
 import "./UsersTabel.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
+import { useHistory } from "react-router-dom";
 
 const UsersTabel = () => {
   const [users, setUsers] = useState({ usersData: [] });
+  const history = useHistory();
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -21,6 +23,11 @@ const UsersTabel = () => {
     fetchUsers();
   }, [setUsers]);
 
+  const handleShowUser = (item) => {
+    const idUser = item.id;
+    history.push(`/user/${idUser}`);
+  };
+
   return (
     <div>
       <Table size="sm" striped bordered hover responsive>
@@ -32,7 +39,7 @@ const UsersTabel = () => {
             <th>Email</th>
             <th>Phone</th>
             <th>Website</th>
-            <th>Actions</th>
+            <th className="centered-column">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -45,8 +52,12 @@ const UsersTabel = () => {
                 <td>{item.email}</td>
                 <td>{item.phone}</td>
                 <td>{item.website}</td>
-                <td className="centered-button">
-                  <Button size="sm" variant="light">
+                <td className="centered-column">
+                  <Button
+                    size="sm"
+                    variant="light"
+                    onClick={() => handleShowUser(item)}
+                  >
                     <FontAwesomeIcon icon={faEye} />
                   </Button>
                 </td>

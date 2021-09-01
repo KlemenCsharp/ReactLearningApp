@@ -6,6 +6,7 @@ import UsersPage from "./pages/users/UsersPage";
 import NotFound from "./pages/not-found/NotFound";
 import HomePage from "./pages/home/HomePage";
 import React from "react";
+import UserPage from "./pages/users/UserPage";
 
 function App() {
   return (
@@ -24,6 +25,10 @@ function App() {
         <Route path="/users">
           <Topbar />
           <UsersPage />
+        </Route>
+        <Route exact path="/user/:id">
+          <Topbar />
+          <UserPage />
         </Route>
         <Route path="*">
           <NotFound />
