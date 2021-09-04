@@ -4,8 +4,6 @@ import { Row, Col } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 
 const UserForm = (props) => {
-  console.log(props.incomingData.username);
-
   return (
     <Form>
       <Form.Group as={Row} className="mb-3" controlId="name">
