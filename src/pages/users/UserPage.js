@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import UserForm from "../../components/user-form/UserForm";
 
 const UserPage = () => {
   let { id } = useParams();
@@ -22,7 +23,7 @@ const UserPage = () => {
   return (
     <div>
       <h1>Id user is {id}</h1>
-      <p>username: {user.userData.username}</p>
+      <UserForm incomingData={user.userData} />
     </div>
   );
 };
