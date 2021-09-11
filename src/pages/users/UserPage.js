@@ -6,7 +6,6 @@ import UserForm from "../../components/user-form/UserForm";
 
 const UserPage = () => {
   let { id } = useParams();
-  // eslint-disable-next-line no-unused-vars
   const [user, setUser] = useState({ userData: {} });
   // eslint-disable-next-line no-unused-vars
   const [comment, setComment] = useState({ commentData: {} });
@@ -35,7 +34,10 @@ const UserPage = () => {
     <div>
       <h1>Id user is {id}</h1>
       <UserForm incomingData={user.userData} />
-      <UserCommentCard />
+      {comment.commentData &&
+        comment.commentData.map((item) => (
+          <UserCommentCard key={item.id} title={item.title} body={item.body} />
+        ))}
     </div>
   );
 };

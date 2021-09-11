@@ -1,12 +1,13 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import Card from "react-bootstrap/Card";
 
-const UserCommentCard = () => {
+const UserCommentCard = (props) => {
   return (
     <Card>
       <Card.Body>
-        <Card.Title>Comment title</Card.Title>
-        <Card.Text>lorem ipsum tralala atallkdjg dfldkj</Card.Text>
+        <Card.Title>{props.title}</Card.Title>
+        <Card.Text>{props.body}</Card.Text>
       </Card.Body>
     </Card>
   );
